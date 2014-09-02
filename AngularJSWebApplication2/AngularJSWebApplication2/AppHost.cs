@@ -39,7 +39,8 @@ namespace AngularJSWebApplication2
             SetConfig(new HostConfig
             {
                 AppendUtf8CharsetOnContentTypes = new HashSet<string> { MimeTypes.Html },
-                AllowJsonpRequests = true              
+                AllowJsonpRequests = true,
+                AllowFileExtensions = { "json", "cshtml" } 
             }
           );
             var conString = ConfigurationManager.ConnectionStrings["Portal"].ConnectionString;

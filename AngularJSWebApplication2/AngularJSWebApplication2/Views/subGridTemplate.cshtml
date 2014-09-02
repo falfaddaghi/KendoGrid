@@ -1,0 +1,17 @@
+﻿<script type="text/x-kendo-template" id="template">
+    <kendo-tab-strip>
+        <ul>
+            <li class="k-state-active">Orders</li>
+        </ul>
+        <div>   <div kendo-grid k-options="detailGridOptions(dataItem)"></div></div>
+    </kendo-tab-strip>
+</script>
+<div class="col-md-12">
+    <div>
+        <div class="col-md-12">
+            <h4>Sales Orders</h4>
+            <kendo-grid id="ordersGrid" options="mainGridOptions"></kendo-grid>
+            <hr />
+        </div>
+    </div>
+</div>

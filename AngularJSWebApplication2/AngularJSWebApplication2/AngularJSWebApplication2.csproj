@@ -126,6 +126,9 @@
     <Content Include="scripts\angular-route.min.js.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="scripts\App\app.js" />
+    <Content Include="scripts\App\Controllers\defaultController.js" />
+    <Content Include="scripts\App\Controllers\gridController.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <None Include="scripts\jquery-2.1.1.intellisense.js" />
@@ -139,7 +142,8 @@
     <Content Include="scripts\angular.min.js.map" />
     <Content Include="scripts\Kendo\kendo.all.min.js.map" />
     <Content Include="scripts\jquery-2.1.1.min.map" />
-    <Content Include="Grid.cshtml" />
+    <Content Include="Views\gridTemplate.cshtml" />
+    <Content Include="Views\subGridTemplate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -167,6 +171,9 @@
       <Project>{08bef328-ab7d-48d3-800d-48acc75c7914}</Project>
       <Name>AngularJSWebApplication2.ServiceModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="scripts\App\Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

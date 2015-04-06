@@ -93,15 +93,7 @@ namespace AngularJSWebApplication1.ServiceInterface
                                 // in case field has space
                                 logic.Field = logic.Field.Replace(" ", "");
                                 if (logic.Operator == "eq")
-                                {
-
-                                    typeof(KendoGridBaseRequest<SalesOrderDetail>)
-                                        .GetProperty(logic.Field + "Temp")
-                                        .AddAttributes(new QueryFieldAttribute { Template = "{Field} = {Value}", Field = logic.Field});
-
-                                    typeof(KendoGridBaseRequest<SalesOrderDetail>)
-                                        .GetProperty(logic.Field + "Temp").SetValue(req, logic.Value);
-                                }
+                                    result.Add(logic.Field, logic.Value);
                                 else if (logic.Operator == "neq")
                                 {
                                     typeof (KendoGridBaseRequest<SalesOrderDetail>)
@@ -126,18 +118,7 @@ namespace AngularJSWebApplication1.ServiceInterface
                                 }
                                 else if (logic.Operator == "endswith")
                                     result.Add(logic.Field + "EndsWith", logic.Value);
-                                //  if (logic.Operator == "eq")
-                                //req.PopulateWith()
-                                /* else if (logic.Operator == "neq")
-                               req.SalesOrderIdNotEqual = logic.Value;
-                           else if (logic.Operator == "startswith")
-                               req.SalesOrderIdNotEqual = logic.Value;
-                           else if (logic.Operator == "contains")
-                               req.SalesOrderIdNotEqual = logic.Value;
-                           else if (logic.Operator == "doesnotcontain")
-                               req.SalesOrderIdNotEqual = logic.Value;
-                           else if (logic.Operator == "endswith")
-                               req.SalesOrderIdNotEqual = logic.Value;*/
+                                
                             }
                         }
                     }
@@ -156,6 +137,7 @@ namespace AngularJSWebApplication1.ServiceInterface
                 // return sorting;
                 //var q = AutoQuery.CreateQuery(req, Request.GetRequestParams());
                 var q = AutoQuery.CreateQuery(req, req.AllPrameterDictionary);
+                
                 //q.GroupBy(x=>x.SalesOrderID).
                 var resultA = AutoQuery.Execute(req, q);
                 

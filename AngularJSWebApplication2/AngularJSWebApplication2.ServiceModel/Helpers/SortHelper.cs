@@ -67,6 +67,8 @@ namespace AngularJSWebApplication2.ServiceModel.Helpers
               
             }
 
+            //            for (var groupObject = 0; groupObject < result.Count(); groupObject++)
+
             foreach (var groupObject in new List<int>(){0, 1})
             {
                 var aggregates = new Dictionary<int, FiltersObj>();

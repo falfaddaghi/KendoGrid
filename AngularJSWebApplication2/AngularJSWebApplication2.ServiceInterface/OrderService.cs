@@ -9,7 +9,7 @@ using AngularJSWebApplication2.ServiceModel.Helpers;
 using ServiceStack;
 using ServiceStack.OrmLite;
 using ServiceStack.Web;
-
+using System.Linq.Dynamic;
 
 namespace AngularJSWebApplication1.ServiceInterface
 {
@@ -68,11 +68,10 @@ namespace AngularJSWebApplication1.ServiceInterface
 
             public object Any(FindOrders req)
             {
-          //      typeof(KendoGridBaseRequest<SalesOrderDetail>)
-    // .GetProperty("Age")
-   //  .AddAttributes(new QueryFieldAttribute { Operand = ">=" });
+               
 
-                //what to group by
+
+
                 var grouping = GroupHelper.Parse(Request.QueryString.ToNameValueCollection());
                 var sorting = SortHelper.Parse(Request.QueryString.ToNameValueCollection());
                 var result = Request.GetRequestParams();
@@ -166,8 +165,31 @@ namespace AngularJSWebApplication1.ServiceInterface
                     };
                     groupResponse.Add(kendoGroup);
                 }
+                /* Here is the Sorting happening */
+              //  KendoGridResponse<SalesOrderDetail> response = null;
+                string data = Request.QueryString.Get("sort[0][field]");
+                List<SalesOrderDetail> SalesList = null;
+                if (data != null)
+                {
+                    
+                    string direction = Request.QueryString.Get("sort[0][dir]");
+                    if (direction != null)
+                    {
+                       
+                        if (direction == "desc")
+                        {
+                            SalesList = resultA.ConvertTo<KendoGridResponse<SalesOrderDetail>>().Results.OrderBy(data).ToList();
+                            SalesList.Reverse();
+                        }
+                        else
+                            SalesList = resultA.ConvertTo<KendoGridResponse<SalesOrderDetail>>().Results.OrderBy(data).ToList();
+                    }
 
-                var response = resultA.ConvertTo<KendoGridResponse<SalesOrderDetail>>();
+                }
+
+              
+                    var response = resultA.ConvertTo<KendoGridResponse<SalesOrderDetail>>();
+                    response.Results = SalesList ?? response.Results;
 
                 response.Groups = groupResponse;
                 return response;
